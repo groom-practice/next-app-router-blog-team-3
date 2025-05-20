@@ -9,6 +9,15 @@ export default function EditPage({ params }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  useEffect(() => {
+    fetch(`/api/posts/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTitle(data.title);
+        setContent(data.content);
+      });
+  }, [id]);
+
   return (
     <main>
       <h1 className="text-xl font-bold mb-4">글 수정</h1>
