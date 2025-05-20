@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function EditPage({ params }) {
   const router = useRouter();
-  const { id } = params;
+  const { id } = use(params);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
