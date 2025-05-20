@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 팀 소개
 
-## Getting Started
+팀장: 신유승
+팀원: 권수영, 김호영, 김기현, 이예도, 양아름
 
-First, run the development server:
+## 실습 소개
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> 주제: 간단한 게시판 블로그
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+사용자는 글 목록을 보고, 개별 글 상세 페이지로 들어가 내용을 읽을 수 있습니다. <br />글을 새로 작성하거나 수정하고 삭제도 할 수 있습니다.
+<br />이 과정에서 Next.js App Router의 기본 기능을 스스로 학습해봅니다.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+> 필수 요구사항 정리
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| **기능 요구사항** | **상세 설명** | **사용하는 Next.js App Router 기능** |
+| --- | --- | --- |
+| 1. 홈 페이지 만들기 | `/` URL에 글 목록이 보이는 홈 화면 | ✅ 기본 페이지 라우팅 (app/page.js) |
+| 2. 글 목록 보기 | 여러 개의 글을 리스트 형태로 표시 | ✅ fetch / useEffect / app/page.js |
+| 3. 글 상세 페이지 | `/posts/[id]` 로 접근 시 해당 글 내용 표시 | ✅ 동적 라우팅 (app/posts/[id]/page.js) |
+| 4. 글 작성 페이지 | `/write` 에서 글 작성 폼 보여주기 | ✅ 정적 라우팅 (app/write/page.js) |
+| 5. 글 수정 페이지 | `/edit/[id]` 로 접근 시 수정 폼 표시 | ✅ 동적 라우팅 (app/edit/[id]/page.js) |
+| 6. 404 페이지 | 잘못된 URL 접근 시 404 안내 | ✅ app/not-found.js |
+| 7. 레이아웃 구성 | 상단에 공통 헤더(홈으로 이동 등) | ✅ app/layout.js 사용 |
+| 8. 링크 이동 | 목록에서 글 클릭 시 상세 페이지 이동 | ✅ <Link> 컴포넌트 사용 |
+| 9. Server Component와 Client Component 구분 | 작성 폼은 클라이언트 컴포넌트로 처리 | ✅ "use client" 및 App Router 구조 이해 |
 
-## Learn More
+> 추가 요구사항 정리
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **검색 기능 추가 (쿼리 파라미터 기반 필터링)**
+    - **목표**: 게시글 목록에서 제목에 특정 키워드가 포함된 글만 필터링
+    - **Next.js 기능 사용**
+        - `searchParams` → App Router에서 URL 쿼리 파라미터를 처리하는 공식 방식
+        - 클라이언트 컴포넌트와 서버 컴포넌트 연동
+    
+2. **카테고리 필터 기능 추가**
+    - **목표**: 게시글을 카테고리(”All”, “React”, “Next.js”, “JavaScript”)로 분류하고 필터링
+    - **Next.js 기능 사용**
+        - dynamic routing + URL 파라미터
+        - 선택된 카테고리 기반 서버 쿼리
+        - 서버 컴포넌트에서 params로 카테고리 처리
