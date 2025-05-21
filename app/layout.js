@@ -1,9 +1,9 @@
-import Link from "next/link"
-import "./globals.css"
+import Link from "next/link";
+import "./globals.css";
 
 export const metadata = {
   title: "블로그 실습",
-}
+};
 
 export default function Layout({ children }) {
   return (
@@ -18,5 +18,5 @@ export default function Layout({ children }) {
         {children}
       </body>
     </html>
-  )
+  );
 }
