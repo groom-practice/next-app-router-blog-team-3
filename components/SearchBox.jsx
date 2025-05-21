@@ -11,8 +11,8 @@ export default function SearchBox() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = new URLSearchParams(searchParams.toString());
-    if (text) {
-      params.set("q", text);
+    if (searchText) {
+      params.set("q", searchText);
     } else {
       params.delete("q");
     }
