@@ -7,6 +7,9 @@ export default function EditForm() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
+
+  if (!title && !content) return alert("제목, 내용을 입력해주세요.");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +19,7 @@ export default function EditForm() {
       body: JSON.stringify({
         title,
         content,
-        category: "React",
+        category,
       }),
     });
 
@@ -34,6 +37,14 @@ export default function EditForm() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="글 제목을 입력해주세요."
         />
+      </div>
+      <div>
+        <label>카테고리</label>
+        <select onChange={(e) => setCategory(e.target.value)}>
+          <option value="react">React</option>
+          <option value="next">Next.JS</option>
+          <option value="javascript">Javascript</option>
+        </select>
       </div>
       <div className="flex items-start gap-4">
         <label className="text-xl font-semibold">글 내용</label>
