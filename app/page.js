@@ -7,8 +7,13 @@ async function getPosts() {
   return res.json();
 }
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }) {
   const posts = await getPosts();
+  const searchKeyword = await searchParams?.q || "";
+
+  const filteredPosts = posts.filter(post => {
+    return post.title.toLowerCase().includes(searchKeyword.toLowerCase());
+  });
 
   return (
     <main className="mx-7 my-10">
