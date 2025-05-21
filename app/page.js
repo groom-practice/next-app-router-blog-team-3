@@ -1,5 +1,4 @@
-import SearchBox from "../components/SearchBox";
-import Link from "next/link";
+import PostList from "./write/_components/PostList";
 
 async function getPosts() {
   const res = await fetch("http://localhost:3000/api/posts", {
@@ -17,21 +16,9 @@ export default async function HomePage({ searchParams }) {
   });
 
   return (
-    <main>
+    <main className="mx-7 my-10">
       <h1 className="text-xl font-bold mb-4">글 목록</h1>
-      <SearchBox />
-      <ul className="space-y-2">
-        {filteredPosts.map((post) => (
-          <li key={post.id}>
-            <Link
-              href={`/posts/${post.id}`}
-              className="text-blue-600 underline"
-            >
-              {post.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </main>
   );
 }
